@@ -1,0 +1,76 @@
+** Câu lệnh khởi động cassandara trong docker
+docker run --name cassandra -d -p 9042:9042 cassandra:latest
+
+** Access vào cassandar
+docker exec -it cassandra cqlsh
+
+** Tạo keyspace recruitment
+
+CREATE KEYSPACE recruitment
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+
+** Dùng keyspace recruitment
+USE recruitment;
+
+** Tạo bảng search_raw 
+CREATE TABLE search_raw (
+    row_id text PRIMARY KEY,
+    job_id text,
+    benefits text,
+    bid text,
+    campaign_budget text,
+    campaign_id text,
+    city_name text,
+    company_logo text,
+    company_name text,
+    description text,
+    feed_id text,
+    lat text,
+    lon text,
+    major_category text,
+    minor_category text,
+    pay_currency text,
+    pay_from text,
+    pay_option text,
+    pay_to text,
+    pay_type text,
+    postal_code text,
+    requirements text,
+    state text,
+    status text,
+    title text,
+    work_schedule text,
+);
+
+** Tạo bảng tracking_raw
+CREATE TABLE recruitment.tracking_raw (
+    create_time text PRIMARY KEY,
+    bid text,
+    bn text,
+    campaign_id text,
+    cd text,
+    custom_track text,
+    de text,
+    dl text,
+    dt text,
+    ed text,
+    ev text,
+    group_id text,
+    id text,
+    job_id text,
+    md text,
+    publisher_id text,
+    rl text,
+    sr text,
+    ts text,
+    tz text,
+    ua text,
+    uid text,
+    utm_campaign text,
+    utm_content text,
+    utm_medium text,
+    utm_source text,
+    utm_term text,
+    v text,
+    vp text
+);
